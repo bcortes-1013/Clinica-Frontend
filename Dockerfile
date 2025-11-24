@@ -24,7 +24,7 @@ RUN npx ng build --configuration production
 FROM nginx:alpine
 
 # Copiamos el build generado hacia la carpeta pública de NGINX
-COPY --from=build /app/dist/clinica-frontend/browser /usr/share/nginx/html
+COPY --from=build /app/dist/clinica-frontend /usr/share/nginx/html
 
 # Copiamos configuración de NGINX
 COPY nginx.conf /etc/nginx/conf.d/default.conf
