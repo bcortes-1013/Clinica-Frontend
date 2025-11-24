@@ -1,0 +1,21 @@
+.btn-1 {background-color: var(--color-1); color: var(--color-5);}
+.btn-2 {background-color: var(--color-2); color: var(--color-6);}
+.btn-3 {background-color: var(--color-5); color: var(--color-1);}
+
+.bg-1 {background-color: var(--color-1); color: var(--color-5);}
+.bg-2 {background-color: var(--color-2); color: var(--color-3);}
+.bg-3 {background-color: var(--color-3);}
+.bg-4 {background-color: var(--color-4); color: var(--color-6);}
+.bg-5 {background-color: var(--color-5);}
+.bg-6 {background-color: var(--color-6);}
+
+.btn-outline{
+    text-decoration: none;
+    color: var(--color-5);
+}
+
+.text-error {
+    color: var(--color-error);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}

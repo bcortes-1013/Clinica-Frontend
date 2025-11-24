@@ -1,0 +1,48 @@
+.btn-1 {background-color: var(--color-1); color: var(--color-5);}
+.btn-2 {background-color: var(--color-2); color: var(--color-6);}
+.btn-3 {background-color: var(--color-5); color: var(--color-1);}
+
+.bg-1 {background-color: var(--color-1); color: var(--color-5);}
+.bg-2 {background-color: var(--color-2); color: var(--color-3);}
+.bg-3 {background-color: var(--color-3);}
+.bg-4 {background-color: var(--color-4); color: var(--color-6);}
+.bg-5 {background-color: var(--color-5);}
+.bg-6 {background-color: var(--color-6);}
+
+.text-error {
+    color: var(--color-error);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.custom-check .form-check-input {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: white;
+    border: 2px solid var(--color-1);
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.custom-check .form-check-input:checked {
+    background-color: var(--color-1);
+    border-color: var(--color-1);
+}
+
+.custom-check .form-check-input:checked::after {
+    content: '';
+    display: block;
+    width: 0.4rem;
+    height: 0.7rem;
+    border: solid var(--color-5);
+    border-width: 0 0.2rem 0.2rem 0;
+    transform: rotate(45deg);
+    position: relative;
+        bottom: 0.45rem;
+    right: 0.125rem;
+}
+
+.btn-outline{
+    text-decoration: none;
+    color: var(--color-5);
+}

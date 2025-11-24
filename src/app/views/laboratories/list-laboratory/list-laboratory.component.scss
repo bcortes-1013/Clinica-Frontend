@@ -1,0 +1,43 @@
+.btn-1 {background-color: var(--color-1); color: var(--color-5);}
+.btn-2 {background-color: var(--color-2); color: var(--color-6);}
+.btn-3 {background-color: var(--color-5); color: var(--color-1);}
+
+.bg-1 {background-color: var(--color-1); color: var(--color-5);}
+.bg-2 {background-color: var(--color-2); color: var(--color-3);}
+.bg-3 {background-color: var(--color-3);}
+.bg-4 {background-color: var(--color-4); color: var(--color-6);}
+.bg-5 {background-color: var(--color-5);}
+.bg-6 {background-color: var(--color-6);}
+
+.btn-recuperar-password{
+    text-decoration: none;
+    color: var(--color-5);
+}
+
+.table-responsive {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table,
+.table td {
+  border: 1px solid #147290; /* Color personalizado */
+}
+
+.table {
+  border-collapse: collapse; /* Para evitar doble borde */
+  --bs-table-bg: transparent;
+}
+
+thead {
+  background-color: var(--color-1);
+}
+
+tbody {
+  background-color: var(--color-6);
+}
+
+th{
+  color: var(--color-5) !important;
+  font-weight: bold;
+}

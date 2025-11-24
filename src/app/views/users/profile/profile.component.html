@@ -1,0 +1,36 @@
+<main class="container my-5">
+    <h1 class="text-center mb-4">Editar Perfil</h1>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="bg-2 animate-slideUp">
+        <div class="card-body">
+            <div class="mb-3">
+            <label class="form-label fw-bold">Nombre completo</label>
+            <input formControlName="fullName" type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+            <label class="form-label fw-bold">Correo</label>
+            <input formControlName="email" type="email" class="form-control disabled">
+            </div>
+
+            <div class="mb-3">
+            <label class="form-label fw-bold">Teléfono</label>
+            <input formControlName="phone" type="number" class="form-control">
+            </div>
+
+            <!-- <div class="mb-3">
+            <label class="form-label fw-bold">Contraseña</label>
+            <input [(ngModel)]="usuarioActivo.password" type="password" class="form-control">
+            </div> -->
+
+            <input [value]="user?.rol" type="hidden" class="form-control">
+
+            <div *ngIf="mensajeError" class="alert alert-danger text-center">{{ mensajeError }}</div>
+            <div *ngIf="mensajeOk" class="alert alert-success text-center">{{ mensajeOk }}</div>
+
+            <div class="d-grid mt-3">
+                <button class="btn btn-1" type="submit">Guardar Cambios</button>
+            </div>
+        </div>
+    </form>
+</main>

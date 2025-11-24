@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Administración de laboratorios</h2>
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-1" (click)="createLaboratory()">
+          <i class="fas fa-plus"></i> Crear laboratorio
+      </button>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let laboratory of laboratories">
+                <td>{{ laboratory.name }}</td>
+                <td>{{ laboratory.description }}</td>
+                <td>{{ laboratory.state }}</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-2 btn-sm" (click)="editProfile(laboratory.id)">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteLaboratory(laboratory.id)">
+                            <i class="fas fa-trash"></i>
+                            Eliminar
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,52 @@
+<header>
+    <nav class="navbar navbar-expand-lg bg-1 navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="assets/img/logo.png" class="img-fluid" alt="Icono Helldiver" style="height: 40px; margin-right: 10px;">Laboratorios LEL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul *ngIf="fullName" class="navbar-nav navbar-usuario me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">{{ fullName }}</li>
+                </ul>
+                <ul class="navbar-nav navbar-menu ms-auto mb-lg-0">
+                    <!-- Solo admin -->
+                    <li class="nav-item" *ngIf="isAdmin">
+                        <a class="nav-link" routerLink="/laboratories">Laboratorios</a>
+                    </li>
+
+                    <li class="nav-item" *ngIf="isAdmin">
+                        <a class="nav-link" routerLink="/users">Usuarios</a>
+                    </li>
+
+                    <!-- Solo técnico -->
+                    <li class="nav-item" *ngIf="isTechnician">
+                        <a class="nav-link disabled" routerLink="/">Muestras</a>
+                    </li>
+
+                    <!-- Solo paciente -->
+                    <li class="nav-item" *ngIf="(!isTechnician && !isAdmin) && isLogged">
+                        <a class="nav-link disabled" routerLink="/">Mis muestras</a>
+                    </li>
+
+                    <!-- Para todos -->
+                    <li class="nav-item" *ngIf="isLogged">
+                        <a class="nav-link" [routerLink]="['/profile', userId]">Mi perfil</a>
+                    </li>
+
+                    <li class="nav-item" *ngIf="!isLogged">
+                        <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+                    </li>
+
+                    <li class="nav-item" *ngIf="!isLogged">
+                        <a class="nav-link" routerLink="/register">Registro paciente</a>
+                    </li>
+
+                    <li class="nav-item" *ngIf="isLogged">
+                        <a class="nav-link text-danger" (click)="logout()" style="cursor: pointer;">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
