@@ -120,7 +120,6 @@ describe('CreateSampleComponent', () => {
   // onSubmit - éxito
   // ---------------------------------------------------------
   it('onSubmit debería crear la muestra correctamente cuando el formulario es válido', () => {
-    // arrange
     samplesServiceSpy.create.and.returnValue(of(mockSample));
     component.laboratories = mockLaboratories;
 
@@ -130,10 +129,8 @@ describe('CreateSampleComponent', () => {
       laboratory: 1
     });
 
-    // act
     component.onSubmit();
 
-    // assert
     expect(samplesServiceSpy.create).toHaveBeenCalledWith(
       jasmine.objectContaining({
         code: 'MUE-001',
@@ -168,5 +165,12 @@ describe('CreateSampleComponent', () => {
     expect(component.mensajeError)
       .toBe('No fue posible registrar el laboratorio. Verifique el código (No debe ser repetido)');
     expect(loadingServiceSpy.hide).toHaveBeenCalled();
+  });
+
+  it('debería comprobar la función isTechnician', () => {
+    authServiceSpy.isTechnician = jasmine.createSpy('isTechnician').and.returnValue(true);
+
+    expect(component.isTechnician).toBeTrue();
+    expect(authServiceSpy.isTechnician).toHaveBeenCalled();
   });
 });

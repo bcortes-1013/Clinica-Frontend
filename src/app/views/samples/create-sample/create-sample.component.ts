@@ -29,6 +29,10 @@ export class CreateSampleComponent {
 
   constructor(private laboratoriesService: LaboratoriesService, private router: Router) {}
 
+  get isTechnician(): boolean {
+    return this.authService.isTechnician();
+  }
+
   form = this.fb.group({
     code: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
     description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],

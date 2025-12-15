@@ -10,7 +10,6 @@ import { ListLaboratoryComponent } from './views/laboratories/list-laboratory/li
 import { EditLaboratoryComponent } from './views/laboratories/edit-laboratory/edit-laboratory.component';
 
 import { AuthGuard } from './guards/auth.guard';
-import { AdminGuard } from './guards/admin.guard';
 import { RoleGuard } from './guards/role.guard';
 import { ListSampleComponent } from './views/samples/list-sample/list-sample.component';
 import { CreateSampleComponent } from './views/samples/create-sample/create-sample.component';
@@ -46,7 +45,8 @@ export const routes: Routes = [
   {
     path: 'users',
     component: AdminComponent,
-    canActivate: [AdminGuard]     // requiere ser ADMIN
+    data: { roles: ['ADMIN'] },
+    canActivate: [RoleGuard]     // requiere ser ADMIN
   },
 
   // ============================================================

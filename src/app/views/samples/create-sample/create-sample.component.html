@@ -41,7 +41,7 @@
             </div>
 
             <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-1">Registrar</button>
+                <button type="submit" class="btn btn-1" [disabled]="!isTechnician">{{ isTechnician ? 'Registrar' : 'Sólo técnicos' }}</button>
                 <button type="reset" class="btn btn-3">Limpiar</button>
             </div>
 

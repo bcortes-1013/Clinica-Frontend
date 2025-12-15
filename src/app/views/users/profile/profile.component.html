@@ -4,18 +4,18 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="bg-2 animate-slideUp">
         <div class="card-body">
             <div class="mb-3">
-            <label class="form-label fw-bold">Nombre completo</label>
-            <input formControlName="fullName" type="text" class="form-control">
+            <label for="fullName" class="form-label fw-bold">Nombre completo</label>
+            <input id="fullName" formControlName="fullName" type="text" class="form-control">
             </div>
 
             <div class="mb-3">
-            <label class="form-label fw-bold">Correo</label>
-            <input formControlName="email" type="email" class="form-control disabled">
+            <label for="email" class="form-label fw-bold">Correo</label>
+            <input id="email" formControlName="email" type="email" class="form-control disabled">
             </div>
 
             <div class="mb-3">
-            <label class="form-label fw-bold">Teléfono</label>
-            <input formControlName="phone" type="number" class="form-control">
+            <label for="phone" class="form-label fw-bold">Teléfono</label>
+            <input id="phone" formControlName="phone" type="number" class="form-control">
             </div>
 
             <!-- <div class="mb-3">

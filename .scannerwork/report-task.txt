@@ -1,0 +1,6 @@
+projectKey=clinica-frontend
+serverUrl=http://localhost:9000
+serverVersion=25.11.0.114957
+dashboardUrl=http://localhost:9000/dashboard?id=clinica-frontend
+ceTaskId=68b86527-daef-4cad-8ef7-2aa5f2ddd1d3
+ceTaskUrl=http://localhost:9000/api/ce/task?id=68b86527-daef-4cad-8ef7-2aa5f2ddd1d3
