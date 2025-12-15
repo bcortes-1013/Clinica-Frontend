@@ -30,6 +30,8 @@ export class RecoverComponent {
   });
 
   onSubmit(): void {
+    const email = this.form.value.email!;
+
     if (this.form.invalid) {
       this.mensajeError = 'Ingresa un correo válido';
       this.form.markAllAsTouched();
@@ -39,14 +41,6 @@ export class RecoverComponent {
     this.mensajeError = null;
     this.mensajeOk = null;
     this.loadingService.show();
-
-    const email = this.form.get('email')?.value;
-
-    if (!email) { // ⚠️ chequeo extra para TS
-      this.mensajeError = 'El correo es obligatorio';
-      this.loadingService.hide();
-      return;
-    }
 
     this.usersService.recoverByEmail(email).subscribe({
       next: (password) => {

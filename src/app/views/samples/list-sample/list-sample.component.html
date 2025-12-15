@@ -1,40 +1,42 @@
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Laboratorios</h2>
+    <h2 class="text-center mb-4">Muestras</h2>
     <div class="d-flex justify-content-end mb-3">
-      <button class="btn btn-1" (click)="createLaboratory()">
-          <i class="fas fa-plus"></i> Crear laboratorio
+      <button class="btn btn-1" (click)="createSample()">
+          <i class="fas fa-plus"></i> Registrar muestra
       </button>
     </div>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
             <tr>
-                <th>Nombre</th>
+                <th>Código</th>
                 <th>Descripción</th>
-                <th>Estado</th>
+                <th>Técnico</th>
+                <th>Laboratorio</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let laboratory of laboratories">
-                <td>{{ laboratory.name }}</td>
-                <td>{{ laboratory.description }}</td>
-                <td>{{ laboratory.state }}</td>
+            <tr *ngFor="let sample of samples">
+                <td>{{ sample.code }}</td>
+                <td>{{ sample.description }}</td>
+                <td>{{ sample.technician }}</td>
+                <td>{{ sample.laboratory }}</td>
                 <td>
                     <div class="d-flex gap-2">
-                        <button class="btn btn-2 btn-sm" (click)="editLaboratory(laboratory.id)">
+                        <button class="btn btn-2 btn-sm" (click)="editSample(sample.id)">
                             <i class="fas fa-edit"></i>
                             Editar
                         </button>
-                        <button class="btn btn-danger btn-sm" (click)="deleteLaboratory(laboratory.id)">
+                        <button class="btn btn-danger btn-sm" (click)="deleteSample(sample.id)">
                             <i class="fas fa-trash"></i>
                             Eliminar
                         </button>
                     </div>
                 </td>
             </tr>
-            <tr *ngIf="laboratories.length === 0">
+            <tr *ngIf="samples.length === 0">
                 <td colspan="5" class="text-center text-muted">
-                No hay laboratorios registrados
+                No hay muestras registradas
                 </td>
             </tr>
         </tbody>

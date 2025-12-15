@@ -41,6 +41,11 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
+    const fullName = this.form.value.fullName!;
+    const email = this.form.value.email!;
+    const password = this.form.value.password!;
+    const phone = this.form.value.phone ?? '';
+
     this.loadingService.show();
     this.mensajeError = null;
     this.mensajeOk = null;
@@ -48,13 +53,6 @@ export class RegisterComponent {
     if (this.form.invalid) {
       this.mensajeError = 'Completa los campos requeridos';
       this.form.markAllAsTouched();
-      this.loadingService.hide();
-      return;
-    }
-
-    const { fullName, email, password, phone } = this.form.value;
-    if (!fullName || !email || !password) {
-      this.mensajeError = 'Nombre, email y contraseña son obligatorios';
       this.loadingService.hide();
       return;
     }

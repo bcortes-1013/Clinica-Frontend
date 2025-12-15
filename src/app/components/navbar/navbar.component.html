@@ -20,14 +20,14 @@
                     </li>
 
                     <!-- Solo técnico -->
-                    <li class="nav-item" *ngIf="isTechnician">
-                        <a class="nav-link disabled" routerLink="/">Muestras</a>
+                    <li class="nav-item" *ngIf="isTechnician || isAdmin">
+                        <a class="nav-link" routerLink="/samples">Muestras</a>
                     </li>
 
                     <!-- Solo paciente -->
-                    <li class="nav-item" *ngIf="(!isTechnician && !isAdmin) && isLogged">
+                    <!-- <li class="nav-item" *ngIf="(!isTechnician && !isAdmin) && isLogged">
                         <a class="nav-link disabled" routerLink="/">Mis muestras</a>
-                    </li>
+                    </li> -->
 
                     <!-- Para todos -->
                     <li class="nav-item" *ngIf="isLogged">

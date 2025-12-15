@@ -17,8 +17,6 @@ export class ListLaboratoryComponent {
   loading = true;
   error = '';
 
-  // public auth = inject(AuthService);
-
   constructor(private laboratoriesService: LaboratoriesService, private router: Router) {}
 
   ngOnInit(): void {
@@ -28,7 +26,7 @@ export class ListLaboratoryComponent {
         this.loading = false;
       },
       error: () => {
-        this.error = 'No se pudieron cargar los usuarios';
+        this.error = 'No se pudieron cargar los laboratorios';
         this.loading = false;
       }
     });
@@ -50,7 +48,7 @@ export class ListLaboratoryComponent {
     });
   }
 
-  editProfile(id?: number): void {
+  editLaboratory(id?: number): void {
     if (id !== undefined) {
       this.router.navigate(['/laboratories/edit', id]);
     } else {

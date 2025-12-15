@@ -15,4 +15,3 @@ export const AdminGuard: CanActivateFn = (route, state) => {
 
   return true;
 };
-

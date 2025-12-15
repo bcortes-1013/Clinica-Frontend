@@ -1,29 +1,29 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from 'src/app/services/loading.service';
-import { LaboratoriesService } from 'src/app/services/laboratories.service';
+import { SamplesService } from 'src/app/services/samples.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Laboratory } from 'src/app/models/laboratory';
+import { Sample } from 'src/app/models/sample';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-edit-laboratory',
+  selector: 'app-edit-sample',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './edit-laboratory.component.html',
-  styleUrls: ['./edit-laboratory.component.scss']
+  templateUrl: './edit-sample.component.html',
+  styleUrls: ['./edit-sample.component.scss']
 })
-export class EditLaboratoryComponent {
-  laboratory?: Laboratory;
+export class EditSampleComponent {
+  sample?: Sample;
   loading = true;
   mensajeError: string | null = null;
   mensajeOk: string | null = null;
   cargando = false;
-  laboratoryId?: number; 
+  sampleId?: number; 
 
   private fb = inject(FormBuilder);
-  private laboratoriesService = inject(LaboratoriesService);
+  private samplesService = inject(SamplesService);
   private loadingService = inject(LoadingService);
   private authService = inject(AuthService);
 
@@ -31,12 +31,11 @@ export class EditLaboratoryComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router
-    // private usersService: UsersService
   ) {}
 
   form = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-    description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]]
+    code: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+    description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
   });
 
   get isAdmin(): boolean {
@@ -44,27 +43,29 @@ export class EditLaboratoryComponent {
   }
 
   ngOnInit(): void {
-    this.laboratoryId = Number(this.route.snapshot.paramMap.get('id'));
-    if (!this.laboratoryId) {
-      this.mensajeError = 'ID de laboratorio inválido';
+    this.sampleId = Number(this.route.snapshot.paramMap.get('id'));
+    if (!this.sampleId) {
+      this.mensajeError = 'ID de muestra inválida';
       this.loading = false;
       return;
     }
 
-    this.laboratoriesService.getById(this.laboratoryId).subscribe({
+    this.samplesService.getById(this.sampleId).subscribe({
       next: (data) => { 
-        this.laboratory = data; 
+        this.sample = data; 
         this.loading = false; 
 
         this.form.patchValue({
-          name: data.name,
-          description: data.description,
+          code: data.code,
+          description: data.description
+          // laboratory: data.laboratory,
+          // technician: data.technician
         });
       },
       error: (err) => {
-        this.mensajeError = 'No se pudo obtener el laboratorio';
+        this.mensajeError = 'No se pudo obtener la muestra';
         this.loading = false;
-        console.error('❌ Error al obtener laboratorio por ID:', err);
+        console.error('❌ Error al obtener muestra por ID:', err);
       }
     });
   }
@@ -74,10 +75,9 @@ export class EditLaboratoryComponent {
     this.mensajeError = null;
     this.mensajeOk = null;
 
-    const payload: Partial<Laboratory> = {
-      name: this.form.value.name ?? undefined,
+    const payload: Partial<Sample> = {
+      code: this.form.value.code ?? undefined,
       description: this.form.value.description ?? undefined,
-      state: this.laboratory?.state
     };
 
     if (this.form.invalid) {
@@ -89,16 +89,16 @@ export class EditLaboratoryComponent {
 
     this.cargando = true;
 
-    this.laboratoriesService.update(this.laboratoryId!, payload).subscribe({
+    this.samplesService.update(this.sampleId!, payload).subscribe({
       next: () => {
-        this.mensajeOk = 'Laboratorio actualizado correctamente';
-        alert("Laboratorio actualizado correctamente");
-        this.isAdmin ? this.router.navigate(['/laboratories']) : this.router.navigate(['/']);
+        this.mensajeOk = 'Muestra actualizada correctamente';
+        alert("Muestra actualizada correctamente");
+        this.isAdmin ? this.router.navigate(['/samples']) : this.router.navigate(['/']);
         this.loadingService.hide();
       },
       error: (err) => {
-        console.error('❌ Error al actualizar laboratorio:', err);
-        this.mensajeError = 'Error al actualizar laboratorio';
+        console.error('❌ Error al actualizar muestra:', err);
+        this.mensajeError = 'Error al actualizar muestra';
         this.loadingService.hide();
       }
     });

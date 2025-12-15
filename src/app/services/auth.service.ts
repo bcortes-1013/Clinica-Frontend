@@ -75,4 +75,8 @@ export class AuthService {
   isTechnician(): boolean {
     return this.userActualSubject.value?.rol === 'TECNICO';
   }
+
+  getRole(): string | null {
+    return this.userActualSubject.value?.rol || null;
+  }
 }

@@ -34,6 +34,11 @@
                     </div>
                 </td>
             </tr>
+            <tr *ngIf="users.length === 0">
+                <td colspan="5" class="text-center text-muted">
+                No hay usuarios registrados
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

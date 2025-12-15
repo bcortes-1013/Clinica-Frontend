@@ -1,0 +1,61 @@
+<main>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Registro de Muestras</h1>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="bg-2 animate-slideUp">
+
+            <div class="mb-3">
+                <label for="code" class="form-label">Nombre completo</label>
+                <input id="code" type="text" formControlName="code" class="form-control" placeholder="Muestra SHM-001">
+                <div class="text-error" *ngIf="form.get('code')?.touched && form.get('code')?.invalid">
+                    Código obligatorio
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Descripción</label>
+                <input id="description" type="description" formControlName="description" class="form-control" placeholder="Reactivo para análisis de sangre">
+                <div class="text-error" *ngIf="form.get('description')?.touched && form.get('description')?.invalid">
+                    Descripción obligatoria
+                </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="laboratory" class="form-label">Laboratorio</label>
+
+              <select id="laboratory" class="form-control" formControlName="laboratory">
+                <option value="" disabled selected>Selecciona un laboratorio</option>
+                <option *ngFor="let lab of laboratories" [ngValue]="lab.id"> {{ lab.name }}</option>
+              </select>
+
+              <div class="text-error" *ngIf="form.get('laboratory')?.touched && form.get('laboratory')?.invalid">
+                Laboratorio obligatorio
+              </div>
+            </div>
+
+            <div *ngIf="mensajeError" class="alert alert-danger mt-3 text-center">
+                {{ mensajeError }}
+            </div>
+
+            <div *ngIf="mensajeOk" class="alert alert-success mt-3 text-center">
+                {{ mensajeOk }}
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-1">Registrar</button>
+                <button type="reset" class="btn btn-3">Limpiar</button>
+            </div>
+
+            <div class="text-center mt-3">
+                <a routerLink="/samples" class="btn-outline">Volver a Muestras</a>
+            </div>
+        </form>
+    </div>
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+        <div id="toastRegistro" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</main>

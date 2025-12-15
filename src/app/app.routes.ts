@@ -11,6 +11,10 @@ import { EditLaboratoryComponent } from './views/laboratories/edit-laboratory/ed
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { RoleGuard } from './guards/role.guard';
+import { ListSampleComponent } from './views/samples/list-sample/list-sample.component';
+import { CreateSampleComponent } from './views/samples/create-sample/create-sample.component';
+import { EditSampleComponent } from './views/samples/edit-sample/edit-sample.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent  },
@@ -51,20 +55,51 @@ export const routes: Routes = [
   {
     path: 'laboratories',
     component: ListLaboratoryComponent,
-    canActivate: [AdminGuard]      // ambos roles pueden ver libros
+    data: { roles: ['ADMIN'] },
+    canActivate: [RoleGuard]
+    // canActivate: [AdminGuard]
   },
 
   {
     path: 'laboratories/create',
     component: CreateLaboratoryComponent,
-    canActivate: [AdminGuard]     // solo ADMIN puede crear
+    data: { roles: ['ADMIN'] },
+    canActivate: [RoleGuard]
+    // canActivate: [AdminGuard]
   },
 
   {
     path: 'laboratories/edit/:id',
     component: EditLaboratoryComponent,
-    canActivate: [AdminGuard]     // solo ADMIN puede editar
+    data: { roles: ['ADMIN'] },
+    canActivate: [RoleGuard]
+    // canActivate: [AdminGuard]
   },
 
+  // ============================================================
+  // CRUD MUESTRAS (Solo técnicos y ADMIN)
+  // ============================================================
+  {
+    path: 'samples',
+    component: ListSampleComponent,
+    data: { roles: ['ADMIN', 'TECNICO'] },
+    canActivate: [RoleGuard]
+  },
+
+  {
+    path: 'samples/create',
+    component: CreateSampleComponent,
+    data: { roles: ['ADMIN', 'TECNICO'] },
+    canActivate: [RoleGuard]
+  },
+
+  {
+    path: 'samples/edit/:id',
+    component: EditSampleComponent,
+    data: { roles: ['ADMIN', 'TECNICO'] },
+    canActivate: [RoleGuard]
+  },
+
+  // Ruta comodín para redirigir a la página principal si no se encuentra la ruta
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

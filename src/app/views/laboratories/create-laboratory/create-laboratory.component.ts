@@ -27,25 +27,16 @@ export class CreateLaboratoryComponent {
     description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
   });
 
-  // get isAdmin(): boolean {
-  //   return this.authService.isAdmin();
-  // }
-
   onSubmit(): void {
     this.loadingService.show();
     this.mensajeError = null;
     this.mensajeOk = null;
-    const { name, description } = this.form.value;
+    const name = this.form.value.name || '';
+    const description = this.form.value.description || '';
 
     if (this.form.invalid) {
       this.mensajeError = 'Completa los campos requeridos';
       this.form.markAllAsTouched();
-      this.loadingService.hide();
-      return;
-    }
-
-    if (!name || !description) {
-      this.mensajeError = 'Nombre y descripción son obligatorios';
       this.loadingService.hide();
       return;
     }
@@ -65,7 +56,7 @@ export class CreateLaboratoryComponent {
       error: err => {
         this.cargando = false;
         console.error('Error en registro', err);
-        this.mensajeError = 'No fue posible registrar el usuario. Verifique el email (no repetido)';
+        this.mensajeError = 'No fue posible registrar el laboratorio. Verifique el nombre (No puede ser repetido)';
         this.loadingService.hide();
       }
     });
