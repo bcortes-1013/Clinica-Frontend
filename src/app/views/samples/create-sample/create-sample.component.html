@@ -4,7 +4,7 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="bg-2 animate-slideUp">
 
             <div class="mb-3">
-                <label for="code" class="form-label">Nombre completo</label>
+                <label for="code" class="form-label">Código</label>
                 <input id="code" type="text" formControlName="code" class="form-control" placeholder="Muestra SHM-001">
                 <div class="text-error" *ngIf="form.get('code')?.touched && form.get('code')?.invalid">
                     Código obligatorio
